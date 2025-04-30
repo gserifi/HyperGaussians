@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build]
+include = ["hypergaussians/**/*.py"]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.black]
+line-length = 120
+
+[project]
+name = "HyperGaussians"
+version = "1.0.0"
+requires-python = ">=3.9"
+dependencies = [
+  # "torch", # Manually install to match CUDA Version
+  # "torchvision", # Manually install to match CUDA Version
+]
+authors = [
+  {name = "Gent Serifi"},
+  {name = "Marcel C. Buehler"}
+]
+
+description = "HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars"
+readme = "README.md"
