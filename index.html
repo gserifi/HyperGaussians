@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="HyperGaussians: High-Dimensional Gaussian Splatting
+        for High-Fidelity Animatable Face Avatars"
+    />
+    <meta name="keywords" content="HyperGaussians" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity
+      Animatable Face Avatars
+    </title>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css"
+    />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link rel="stylesheet" href="./static/css/academicons.min.css" />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/HyperGS.png" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/node_modules/bulma-accordion/dist/js/bulma-accordion.min.js"
+    ></script>
+    <script src="./static/js/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <script
+      src="./static/js/jquery.event.move.js"
+      type="text/javascript"
+    ></script>
+  </head>
+
+  <style>
+    .rotate_image {
+      -webkit-transform: rotate(270deg);
+      -moz-transform: rotate(270deg);
+      -ms-transform: rotate(270deg);
+      -o-transform: rotate(270deg);
+      transform: rotate(270deg);
+      margin: 100px 0 50px 0;
+    }
+
+    .rotate_image90 {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      margin: 100px 0 50px 0;
+    }
+
+    .rotate-text {
+      transform: rotate(270deg);
+    }
+
+    .tiny_image {
+      width: 12%;
+    }
+  </style>
+
+  <body>
+    <nav
+      class="navbar is-fixed-top is-link"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbar"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbar" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="index.html"> Home </a>
+          <a class="navbar-item" href="#sec-method"> Method </a>
+          <a class="navbar-item" href="#sec-selfreenactment">
+            Self-Reenactment
+          </a>
+          <a class="navbar-item" href="#sec-crossreenactment">
+            Cross-Reenactment
+          </a>
+          <a class="navbar-item" href="#sec-uncertainty">Uncertainty</a>
+          <a
+            class="navbar-item"
+            href="https://github.com/gserifi/HyperGaussians"
+            target="_blank"
+            ><i class="fas fa-external-link-alt"></i>&nbsp;Code</a
+          >
+        </div>
+        <div class="navbar-end"></div>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="container">-</div>
+    </section>
+
+    <br /><br /><br />
+    <section class="hero" id="sec-top">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                <span class="fancy_bg">HyperGaussians</span>: High-Dimensional
+                Gaussian Splatting for High-Fidelity Animatable Face Avatars
+              </h1>
+              <div>
+                <div class="is-size-5 publication-authors">
+                  <span class="author-block"
+                    ><a href="https://gserifi.github.io" target="_blank"
+                      >Gent Serifi</a
+                    ></span
+                  >
+                  and
+                  <span class="author-block"
+                    ><a
+                      href="https://ait.ethz.ch/people/buehler"
+                      target="_blank"
+                      >Marcel C. Buehler</a
+                    ></span
+                  >
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"
+                      ><a
+                        href="https://ait.ethz.ch/"
+                        target="_blank"
+                        title="AIT Lab at ETH Zurich"
+                        >ETH Zurich</a
+                      ></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="is-size-5">
+                <div class="publication-links">
+                  <!-- PDF Link. -->
+                  <span class="link-block">
+                    <a
+                      href="/todo"
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                    >
+                      <span class="icon">
+                        <svg
+                          class="svg-inline--fa fa-file-pdf fa-w-12"
+                          aria-hidden="true"
+                          focusable="false"
+                          data-prefix="fas"
+                          data-icon="file-pdf"
+                          role="img"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 384 512"
+                          data-fa-i2svg=""
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"
+                          ></path>
+                        </svg>
+                      </span>
+                      <span>Paper (arXiv)</span>
+                    </a>
+                  </span>
+                  <span class="link-block"
+                    ><a
+                      href="https://github.com/gserifi/HyperGaussians"
+                      class="external-link button is-normal is-rounded is-dark"
+                      target="_blank"
+                    >
+                      <i class="fab fa-github"></i>&nbsp; Code
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom: 0">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <!-- <div class="column is-9">
+                    <img src="static/HyperGS.png" width="40%"/> -->
+          <div class="column is-9">
+            <video
+              src="static/videos/teaser.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abstract. -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-9">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <b>TL;DR:</b> Plug-and-play high-dimensional extension of 3DGS for
+              dynamic scenes.<br /><br />
+              We introduce <b>HyperGaussians</b>, a novel extension of 3D
+              Gaussian Splatting for
+              <b>high-quality animatable face avatars</b>. Creating such
+              detailed face avatars from videos is a challenging problem and has
+              numerous applications in augmented and virtual reality. While
+              tremendous successes have been achieved for static faces,
+              animatable avatars from monocular videos still fall in the uncanny
+              valley. The de facto standard, 3D Gaussian Splatting (3DGS),
+              represents a face through a collection of 3D Gaussian primitives.
+              3DGS excels at rendering static faces, but the state-of-the-art
+              still struggles with
+              <b
+                >nonlinear deformations, complex lighting effects, and fine
+                details</b
+              >. While most related works focus on predicting better Gaussian
+              parameters from expression codes, we rethink the 3D Gaussian
+              representation itself and how to make it more expressive. Our
+              insights lead to a novel extension of 3D Gaussians to
+              <b>high-dimensional multivariate Gaussians</b>, dubbed
+              'HyperGaussians'. The higher dimensionality increases expressivity
+              through conditioning on a learnable local embedding. However,
+              splatting HyperGaussians is computationally expensive because it
+              requires inverting a high-dimensional covariance matrix. We solve
+              this by re-parameterizing the covariance matrix, dubbed the
+              'inverse covariance trick'. This trick boosts the efficiency so
+              that HyperGaussians can be
+              <b>seamlessly integrated into existing models</b>. To demonstrate
+              this, we plug in HyperGaussians into the state-of-the-art in fast
+              monocular face avatars: <b>FlashAvatar</b>. Our evaluation on 19
+              subjects from 4 face datasets shows that HyperGaussians outperform
+              3DGS numerically and visually, particularly for
+              <b>high-frequency details</b> like eyeglass frames, teeth, complex
+              facial movements, and specular reflections.
+            </div>
+            <div class="content has-text-justified">
+              Please use the links in the navigation bar to quickly jump to
+              results.
+            </div>
+            <div class="content has-text-justified">
+              <i>We recommend using Chrome for playing the videos.</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Abstract. -->
+
+    <br /><br /><br />
+    <hr style="width: 30%; margin: auto" />
+    <br /><br /><br />
+
+    <!-- Method. -->
+    <section class="section" id="sec-method">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-9">
+            <h2 class="title is-3">Method</h2>
+            <img src="static/method.png" />
+            <br /><br /><br />
+            <div class="content has-text-justified">
+              We propose an extension to 3D Gaussians, dubbed HyperGaussians,
+              and plug them into an existing method for face avatars,
+              FlashAvatar. FlashAvatar modulates 3D Gaussian primitives with
+              expression-dependent offsets. We make a single modification to the
+              pipeline: We plug in HyperGaussians between the MLP output and the
+              rasterization, which modifies the offsets in higher dimensions.
+              Instead of directly predicting offsets , we predict a latent that
+              conditions the HyperGaussians. Without
+              <i>any other modifications</i> or hyperparameter tuning, this
+              simple change enhances details in the final avatar and leads to a
+              performance boost.
+              <i>This figure has been adapted from FlashAvatar.</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Method. -->
+
+    <br /><br /><br />
+    <hr style="width: 30%; margin: auto" />
+    <br /><br /><br />
+
+    <!-- Self-Reenactment. -->
+    <section class="section" id="sec-selfreenactment">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-9">
+            <h2 class="title is-3">Self-Reenactment</h2>
+            <div class="content has-text-justified">
+              <b>HyperGaussians</b> achieve high-quality details for thin
+              structures (glass frames and teeth in the first row), specular
+              reflections (eyes in the second row), and gracefully handle
+              complex deformations (mouth in the third row).
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <div class="content">
+              <h3 class="has-text-centered">Ground Truth</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/gt/nf_01.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="content">
+              <h3 class="has-text-centered">Ours</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/ours/nf_01.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="content">
+              <h3 class="has-text-centered">FlashAvatar</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/FA/nf_01.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <video
+              src="static/videos/gt/bala.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+          <div class="column is-3">
+            <video
+              src="static/videos/ours/bala.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+          <div class="column is-3">
+            <video
+              src="static/videos/FA/bala.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <video
+              src="static/videos/gt/malte.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+          <div class="column is-3">
+            <video
+              src="static/videos/ours/malte.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+          <div class="column is-3">
+            <video
+              src="static/videos/FA/malte.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Self-Reenactment. -->
+
+    <br /><br /><br />
+    <hr style="width: 30%; margin: auto" />
+    <br /><br /><br />
+
+    <!-- Cross-Reenactment. -->
+    <section class="section" id="sec-crossreenactment">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-9">
+            <h2 class="title is-3">Cross-Reenactment</h2>
+            <div class="content has-text-justified">
+              <b>HyperGaussians</b> preserve fine details in the teeth and the
+              overall shape of the subject.
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <div class="content">
+              <h3 class="has-text-centered">Source</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/gt/malte.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="content">
+              <h3 class="has-text-centered">Ours</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/ours/malte_to_nf01.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="content">
+              <h3 class="has-text-centered">FlashAvatar</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/FA/malte_to_nf01.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-3">
+            <video
+              src="static/videos/gt/nf_01.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+          <div class="column is-3">
+            <video
+              src="static/videos/ours/nf01_to_bala.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+          <div class="column is-3">
+            <video
+              src="static/videos/FA/nf01_to_bala.mp4"
+              controls="false"
+              autoplay
+              loop
+              muted
+            ></video>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Cross-Reenactment. -->
+
+    <br /><br /><br />
+    <hr style="width: 30%; margin: auto" />
+    <br /><br /><br />
+
+    <!-- Uncertainty. -->
+    <section class="section" id="sec-uncertainty">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-9">
+            <h2 class="title is-3">Uncertainty</h2>
+            <div class="content has-text-justified">
+              <b>HyperGaussians</b> demonstrate an emerging property that arises
+              naturally throughout training. Their conditional covariance
+              matrices indicate the variance of each Gaussian across the
+              different expressions of the training subject and can be
+              intuitively interpreted as uncertainty. This agreement between the
+              uncertainty estimates and what would intuitively be considered
+              difficult regions is an inductive bias of our formulation and does
+              not require explicit supervision.
+            </div>
+          </div>
+        </div>
+
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <div class="content">
+              <h3 class="has-text-centered">Original RGB</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/gt/nf_01.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+          <div class="column is-4">
+            <div class="content">
+              <h3 class="has-text-centered">Uncertainty Map</h3>
+            </div>
+            <div class="item">
+              <video
+                src="static/videos/uncertainty.mp4"
+                controls="false"
+                autoplay
+                loop
+                muted
+              ></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Uncertainty. -->
+
+    <!-- Start Citation -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="column is-centered">
+          <div class="container">
+            <div class="columns">
+              <div class="column">
+                If you find this work useful, please consider citing:
+                <pre class="citation">@todo</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Citation -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is licensed under a
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/"
+                  >Creative Commons Attribution-ShareAlike 4.0 International
+                  License</a
+                >.
+              </p>
+              <p>
+                We thank
+                <a href="https://github.com/nerfies/nerfies.github.io"
+                  >NeRFies</a
+                >
+                for providing the website template.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(
+          document.querySelectorAll(".navbar-burger"),
+          0
+        );
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach((el) => {
+          el.addEventListener("click", () => {
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle("is-active");
+            $target.classList.toggle("is-active");
+          });
+        });
+      });
+
+      bulmaCarousel.attach("#carousel-overview", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+      });
+
+      bulmaCarousel.attach("#carousel-itw", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: true,
+      });
+
+      bulmaCarousel.attach("#carousel-one", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: true,
+      });
+
+      bulmaCarousel.attach("#carousel-prior", {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: true,
+      });
+      var accordions = bulmaAccordion.attach(); // accordions now contains an array of all Accordion instances
+    </script>
+  </body>
+</html>

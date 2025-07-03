@@ -1,1 +1,1 @@
-# HyperGaussians
+# HyperGaussians Project Page
