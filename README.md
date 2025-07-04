@@ -8,7 +8,7 @@
 
 [ETH Zurich](https://ait.ethz.ch)
 
-[Paper (arXiv)](https://arxiv.org)
+[Paper (arXiv)](https://arxiv.org/abs/2507.02803)
 &#8226;
 [Project Page](https://gserifi.github.io/HyperGaussians)
 </div>
@@ -68,5 +68,11 @@ deforms_scl, uncertainty_scl = hgs_scl(latent)
 ## Citation
 If you find HyperGaussians useful for your research, please consider citing our paper:
 ```
-@todo
+@article{Serifi2025HyperGaussians,
+  author={Gent Serifi and Marcel C. Bühler},
+  title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
+  journal={arXiv},
+  volume={2507.02803},
+  year={2025}
+}
 ```
