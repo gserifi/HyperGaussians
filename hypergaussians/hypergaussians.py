@@ -70,10 +70,10 @@ class HyperGaussians(nn.Module):
         self.reset_parameters(init_output)
 
     def reset_parameters(self, init_output: torch.Tensor = None) -> None:
-        if init_output is None:
-            nn.init.zeros_(self.mean)
-        else:
+        nn.init.zeros_(self.mean)
+        if init_output is not None:
             self.mean.data[:, : self.out_features] = init_output
+
         nn.init.zeros_(self.l11)
         nn.init.zeros_(self.l21)
 
