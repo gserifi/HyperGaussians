@@ -1,4 +1,10 @@
-# HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars
+<h1 align="center">HyperGaussians<br><sub><sup>High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars</sup></sub></h1>
+
+<div align="center">
+
+[![Hugging Face](https://img.shields.io/badge/Project_Page-14161a?logo=homepage)](https://gserifi.github.io/HyperGaussians)&#160;
+[![Technical Report](https://img.shields.io/badge/Paper_(arXiv)-b5212f?logo=arxiv)](https://arxiv.org/abs/2507.02803)
+</div>
 
 <div align="center">
 
@@ -6,12 +12,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;
 [Marcel C. Buehler](https://ait.ethz.ch/people/buehler)
 
-[ETH Zurich](https://ait.ethz.ch)
-
-[Paper (arXiv)](https://arxiv.org/abs/2507.02803)
-&#8226;
-[Project Page](https://gserifi.github.io/HyperGaussians)
+[ETH Zurich](https://ait.ethz.ch), Switzerland
 </div>
+
+![Teaer](assets/teaser.png)
 
 This repository contains a plug-and-play implementation of **HyperGaussians**, which can be directly installed from this
 repository for a frictionless integration into existing pipelines. We kindly refer to the original paper for a detailed
@@ -67,7 +71,7 @@ deforms_scl, uncertainty_scl = hgs_scl(latent)
 
 ## Citation
 If you find HyperGaussians useful for your research, please consider citing our paper:
-```
+```bibtex
 @article{Serifi2025HyperGaussians,
   author={Gent Serifi and Marcel C. Bühler},
   title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
