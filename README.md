@@ -1,4 +1,4 @@
-<h1 align="center">HyperGaussians<br><sub><sup>High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars</sup></sub></h1>
+<h1 align="center">HyperGaussians (CVPR 2026)<br><sub><sup>High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars</sup></sub></h1>
 
 <div align="center">
 
@@ -72,11 +72,10 @@ deforms_scl, uncertainty_scl = hgs_scl(latent)
 ## Citation
 If you find HyperGaussians useful for your research, please consider citing our paper:
 ```bibtex
-@article{Serifi2025HyperGaussians,
+@inproceedings{Serifi2025HyperGaussians,
   author={Gent Serifi and Marcel C. Bühler},
   title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
-  journal={arXiv},
-  volume={2507.02803},
-  year={2025}
+  booktitle = {Computer Vision and Pattern Recognition (CVPR)},
+  year={2026}
 }
 ```
