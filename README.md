@@ -1,4 +1,4 @@
-<h1 align="center">HyperGaussians (CVPR 2026)<br><sub><sup>High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars</sup></sub></h1>
+<h1 align="center">HyperGaussians [CVPR 2026]<br><sub><sup>High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars</sup></sub></h1>
 
 <div align="center">
 
@@ -21,8 +21,8 @@ This repository contains a plug-and-play implementation of **HyperGaussians**, w
 repository for a frictionless integration into existing pipelines. We kindly refer to the original paper for a detailed
 description of the method and its applications.
 
-For a real-world example that uses the `HyperGaussians` module, please refer to the `flash_avatar` branch of the
-repository. It contains our modified version of [FlashAvatar](https://github.com/USTC3DV/FlashAvatar-code) with setup
+For real-world examples that use `HyperGaussians`, please refer to the `flash_avatar` and `gaussianheadavatar` branches in this
+repository. They contain our modified versions of [FlashAvatar](https://github.com/USTC3DV/FlashAvatar-code) and [GaussianHeadAvatar](https://github.com/YuelangX/Gaussian-Head-Avatar) with setup
 and usage instructions.
 
 ## Get Started
@@ -71,11 +71,12 @@ deforms_scl, uncertainty_scl = hgs_scl(latent)
 
 ## Citation
 If you find HyperGaussians useful for your research, please consider citing our paper:
+
 ```bibtex
 @inproceedings{Serifi2025HyperGaussians,
-  author={Gent Serifi and Marcel C. Buehler},
   title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
-  booktitle = {Computer Vision and Pattern Recognition (CVPR)},
+  author={Gent Serifi and Marcel C. Buehler},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2026}
 }
 ```
