@@ -68,7 +68,7 @@ Part of the code is borrowed from [gaussian-splatting](https://github.com/graphd
 ## Citation
 If you find this code useful for your research, please cite both HyperGaussians and GaussianHeadAvatar:
 
-```
+```bibtex
 @inproceedings{Serifi2025HyperGaussians,
   title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
   author={Gent Serifi and Marcel C. Buehler},
@@ -77,7 +77,7 @@ If you find this code useful for your research, please cite both HyperGaussians 
 }
 ```
 
-```
+```bibtex
 @inproceedings{xu2023gaussianheadavatar,
   title={Gaussian Head Avatar: Ultra High-fidelity Head Avatar via Dynamic Gaussians},
   author={Xu, Yuelang and Chen, Benwang and Li, Zhe and Zhang, Hongwen and Wang, Lizhen and Zheng, Zerong and Liu, Yebin},
