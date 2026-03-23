@@ -73,7 +73,7 @@ deforms_scl, uncertainty_scl = hgs_scl(latent)
 If you find HyperGaussians useful for your research, please consider citing our paper:
 
 ```bibtex
-@inproceedings{Serifi2025HyperGaussians,
+@inproceedings{Serifi2026HyperGaussians,
   title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
   author={Gent Serifi and Marcel C. Buehler},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
