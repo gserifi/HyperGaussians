@@ -106,12 +106,11 @@ python3 render.py --idname <dest> --logname <logname> --checkpoint <dest_checkpo
 If you find this code useful for your research, please cite both HyperGaussians and FlashAvatar:
 
 ```
-@article{Serifi2025HyperGaussians,
-  author={Gent Serifi and Marcel C. Bühler},
+@inproceedings{Serifi2025HyperGaussians,
   title={HyperGaussians: High-Dimensional Gaussian Splatting for High-Fidelity Animatable Face Avatars},
-  journal={arXiv},
-  volume={2507.02803},
-  year={2025}
+  author={Gent Serifi and Marcel C. Buehler},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2026}
 }
 ```
 
