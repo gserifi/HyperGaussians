@@ -10,7 +10,7 @@
 
 [Gent Serifi](https://gserifi.github.io)
 &nbsp;&nbsp;&nbsp;&nbsp;
-[Marcel C. Buehler](https://ait.ethz.ch/people/buehler)
+[Marcel C. Buehler](https://mcbuehler.ch)
 
 [ETH Zurich](https://ait.ethz.ch), Switzerland
 </div>
