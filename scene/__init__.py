@@ -17,11 +17,11 @@ from utils.graphics_utils import focal2fov
 
 
 class Scene_mica:
-    def __init__(self, datadir, mica_datadir, train_type, white_background, device, cross=None):
+    def __init__(self, datadir, mica_datadir, train_type, white_background, device, cross=None, frame_delta=0):
         self.device = device
         self.train_type = train_type
         ## train_type: 0 for train, 1 for test, 2 for eval
-        self.frame_delta = 1  # default mica-tracking starts from the second frame
+        self.frame_delta = frame_delta  # If you use MICA instead of metrical-tracker, set this to 1 to start from the second frame.
         if cross is not None:
             datadir = os.path.join(datadir, "..", cross)
         self.images_folder = os.path.join(datadir, "imgs")
