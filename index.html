@@ -48,10 +48,16 @@
     <script src="./static/js/bulma-slider.min.js"></script>
     <script src="./static/js/index.js"></script>
 
+    <link
+      href="./static/css/twentytwenty.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script
       src="./static/js/jquery.event.move.js"
       type="text/javascript"
     ></script>
+    <script src="./static/js/jquery.twentytwenty.js"></script>
   </head>
 
   <style>
@@ -109,6 +115,9 @@
         <div class="navbar-start">
           <a class="navbar-item" href="index.html"> Home </a>
           <a class="navbar-item" href="#sec-method"> Method </a>
+          <a class="navbar-item" href="#sec-multiview">
+            Multi-View Comparison
+          </a>
           <a class="navbar-item" href="#sec-selfreenactment">
             Self-Reenactment
           </a>
@@ -133,7 +142,7 @@
     <br /><br /><br />
     <section class="hero" id="sec-top">
       <div class="hero-body">
-        <div class="container is-max-desktop">
+        <div class="container is-max-widescreen">
           <div class="columns is-centered">
             <div class="column has-text-centered">
               <h1 class="title is-1 publication-title">
@@ -221,11 +230,11 @@
     </section>
 
     <section class="section" style="padding-bottom: 0">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="columns is-centered has-text-centered">
-          <!-- <div class="column is-9">
+          <!-- <div class="column is-11">
                     <img src="static/HyperGS.png" width="40%"/> -->
-          <div class="column is-9">
+          <div class="column is-11">
             <video
               src="static/videos/teaser.mp4"
               controls="false"
@@ -240,20 +249,18 @@
 
     <!-- Abstract. -->
     <section class="section">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="columns is-centered">
-          <div class="column is-9">
+          <div class="column is-11">
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <b>TL;DR:</b> Plug-and-play high-dimensional extension of 3DGS for
               dynamic scenes.<br /><br />
               We introduce <b>HyperGaussians</b>, a novel extension of 3D
               Gaussian Splatting for
-              <b>high-quality animatable face avatars</b>. Creating such
-              detailed face avatars from videos is a challenging problem and has
-              numerous applications in augmented and virtual reality. While
+              <b>high-quality animatable face avatars</b>. While
               tremendous successes have been achieved for static faces,
-              animatable avatars from monocular videos still fall in the uncanny
+              animatable avatars from dynamic videos still fall in the uncanny
               valley. The de facto standard, 3D Gaussian Splatting (3DGS),
               represents a face through a collection of 3D Gaussian primitives.
               3DGS excels at rendering static faces, but the state-of-the-art
@@ -270,16 +277,17 @@
               through conditioning on a learnable local embedding. However,
               splatting HyperGaussians is computationally expensive because it
               requires inverting a high-dimensional covariance matrix. We solve
-              this by re-parameterizing the covariance matrix, dubbed the
+              this by reparameterizing the covariance matrix, dubbed the
               'inverse covariance trick'. This trick boosts the efficiency so
               that HyperGaussians can be
               <b>seamlessly integrated into existing models</b>. To demonstrate
-              this, we plug in HyperGaussians into the state-of-the-art in fast
-              monocular face avatars: <b>FlashAvatar</b>. Our evaluation on 19
-              subjects from 4 face datasets shows that HyperGaussians outperform
+              this, we plug in HyperGaussians into two state-of-the-art methods
+              for face avatars: <b>FlashAvatar</b> and
+              <b>GaussianHeadAvatar</b>. Our evaluation on 29
+              subjects from 6 face datasets shows that HyperGaussians outperform
               3DGS numerically and visually, particularly for
-              <b>high-frequency details</b> like eyeglass frames, teeth, complex
-              facial movements, and specular reflections.
+              <b>high-frequency details</b> like eyes, teeth, wrinkles,
+              and specular reflections.
             </div>
             <div class="content has-text-justified">
               Please use the links in the navigation bar to quickly jump to
@@ -300,9 +308,9 @@
 
     <!-- Method. -->
     <section class="section" id="sec-method">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="columns is-centered">
-          <div class="column is-9">
+          <div class="column is-11">
             <h2 class="title is-3">Method</h2>
             <img src="static/method.png" />
             <br /><br /><br />
@@ -330,11 +338,89 @@
     <hr style="width: 30%; margin: auto" />
     <br /><br /><br />
 
+    <!-- Multi-View Comparison. -->
+    <section class="section" id="sec-multiview">
+      <div class="container is-max-widescreen">
+        <div class="columns is-centered">
+          <div class="column is-11">
+            <h2 class="title is-3">Multi-View Comparison</h2>
+            <div class="content has-text-justified">
+              Qualitative comparison in the multi-view video setting against
+              GaussianHeadAvatar (GHA) [Xu et al. 2024]. Move the cursor over
+              the images to compare. Top half: GaussianHeadAvatar (left) vs.
+              Ours (right). Bottom half: Ground Truth.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container is-max-widescreen">
+      <div class="columns is-centered">
+        <div class="column is-6">
+          <div class="content">
+            <h3 class="has-text-centered">Subject 017</h3>
+          </div>
+          <div class="item">
+            <div class="twentytwenty-container">
+              <img src="static/images/gha_017_001696.jpg" alt="GHA" class="img-responsive">
+              <img src="static/images/hgs_017_001696.jpg" alt="Ours" class="img-responsive">
+              <img src="static/images/gt_017_001696.jpg" alt="Ground Truth" class="img-responsive">
+            </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="content">
+            <h3 class="has-text-centered">Subject 036</h3>
+          </div>
+          <div class="item">
+            <div class="twentytwenty-container">
+              <img src="static/images/gha_036_000271.png" alt="GHA" class="img-responsive">
+              <img src="static/images/hgs_036_000271.png" alt="Ours" class="img-responsive">
+              <img src="static/images/gt_036_000271.png" alt="Ground Truth" class="img-responsive">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-6">
+          <div class="content">
+            <h3 class="has-text-centered">Subject 141</h3>
+          </div>
+          <div class="item">
+            <div class="twentytwenty-container">
+              <img src="static/images/gha_141_000572.jpg" alt="GHA" class="img-responsive">
+              <img src="static/images/hgs_141_000572.jpg" alt="Ours" class="img-responsive">
+              <img src="static/images/gt_141_000572.jpg" alt="Ground Truth" class="img-responsive">
+            </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="content">
+            <h3 class="has-text-centered">Subject 144</h3>
+          </div>
+          <div class="item">
+            <div class="twentytwenty-container">
+              <img src="static/images/gha_144_001973.jpg" alt="GHA" class="img-responsive">
+              <img src="static/images/hgs_144_001973.jpg" alt="Ours" class="img-responsive">
+              <img src="static/images/gt_144_001973.jpg" alt="Ground Truth" class="img-responsive">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Multi-View Comparison. -->
+
+    <br /><br /><br />
+    <hr style="width: 30%; margin: auto" />
+    <br /><br /><br />
+
     <!-- Self-Reenactment. -->
     <section class="section" id="sec-selfreenactment">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="columns is-centered">
-          <div class="column is-9">
+          <div class="column is-11">
             <h2 class="title is-3">Self-Reenactment</h2>
             <div class="content has-text-justified">
               <b>HyperGaussians</b> achieve high-quality details for thin
@@ -346,7 +432,7 @@
         </div>
 
         <div class="columns is-centered">
-          <div class="column is-3">
+          <div class="column is-4">
             <div class="content">
               <h3 class="has-text-centered">Ground Truth</h3>
             </div>
@@ -360,7 +446,7 @@
               ></video>
             </div>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <div class="content">
               <h3 class="has-text-centered">Ours</h3>
             </div>
@@ -374,7 +460,7 @@
               ></video>
             </div>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <div class="content">
               <h3 class="has-text-centered">FlashAvatar</h3>
             </div>
@@ -391,7 +477,7 @@
         </div>
 
         <div class="columns is-centered">
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/gt/bala.mp4"
               controls="false"
@@ -400,7 +486,7 @@
               muted
             ></video>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/ours/bala.mp4"
               controls="false"
@@ -409,7 +495,7 @@
               muted
             ></video>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/FA/bala.mp4"
               controls="false"
@@ -421,7 +507,7 @@
         </div>
 
         <div class="columns is-centered">
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/gt/malte.mp4"
               controls="false"
@@ -430,7 +516,7 @@
               muted
             ></video>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/ours/malte.mp4"
               controls="false"
@@ -439,7 +525,7 @@
               muted
             ></video>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/FA/malte.mp4"
               controls="false"
@@ -459,9 +545,9 @@
 
     <!-- Cross-Reenactment. -->
     <section class="section" id="sec-crossreenactment">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="columns is-centered">
-          <div class="column is-9">
+          <div class="column is-11">
             <h2 class="title is-3">Cross-Reenactment</h2>
             <div class="content has-text-justified">
               <b>HyperGaussians</b> preserve fine details in the teeth and the
@@ -471,7 +557,7 @@
         </div>
 
         <div class="columns is-centered">
-          <div class="column is-3">
+          <div class="column is-4">
             <div class="content">
               <h3 class="has-text-centered">Source</h3>
             </div>
@@ -485,7 +571,7 @@
               ></video>
             </div>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <div class="content">
               <h3 class="has-text-centered">Ours</h3>
             </div>
@@ -499,7 +585,7 @@
               ></video>
             </div>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <div class="content">
               <h3 class="has-text-centered">FlashAvatar</h3>
             </div>
@@ -516,7 +602,7 @@
         </div>
 
         <div class="columns is-centered">
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/gt/nf_01.mp4"
               controls="false"
@@ -525,7 +611,7 @@
               muted
             ></video>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/ours/nf01_to_bala.mp4"
               controls="false"
@@ -534,7 +620,7 @@
               muted
             ></video>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <video
               src="static/videos/FA/nf01_to_bala.mp4"
               controls="false"
@@ -554,9 +640,9 @@
 
     <!-- Uncertainty. -->
     <section class="section" id="sec-uncertainty">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="columns is-centered">
-          <div class="column is-9">
+          <div class="column is-11">
             <h2 class="title is-3">Uncertainty</h2>
             <div class="content has-text-justified">
               <b>HyperGaussians</b> demonstrate an emerging property that arises
@@ -607,7 +693,7 @@
 
     <!-- Start Citation -->
     <section class="section">
-      <div class="container is-max-desktop">
+      <div class="container is-max-widescreen">
         <div class="column is-centered">
           <div class="container">
             <div class="columns">
@@ -704,6 +790,11 @@
         loop: true,
         infinite: true,
       });
+      $(".twentytwenty-container").twentytwenty({
+        default_offset_pct_x: 0.5,
+        default_offset_pct_y: 0.5,
+      });
+
       var accordions = bulmaAccordion.attach(); // accordions now contains an array of all Accordion instances
     </script>
   </body>
